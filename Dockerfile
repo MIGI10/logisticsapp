@@ -1,11 +1,20 @@
-FROM openjdk:17-jdk-slim
+FROM maven:3.9.5-amazoncorretto-21 AS build
 
 WORKDIR /app
 
-COPY target/inditex-backend.jar app.jar
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
+FROM amazoncorretto:21.0.0
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 3000
-
-HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:3000/api/health || exit 1
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

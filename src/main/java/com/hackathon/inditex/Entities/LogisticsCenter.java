@@ -1,25 +1,21 @@
 package com.hackathon.inditex.Entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
 @Entity
-@Table(name = "centers", uniqueConstraints = @UniqueConstraint(columnNames = {"latitude", "longitude"}))
-public class Center {
+@Getter
+@Setter
+public class LogisticsCenter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private String capacity;
-
     private String status;
-
-    private Integer currentLoad;
-
-    private Integer maxCapacity;
+    private int maxCapacity;
+    private int currentLoad;
 
     @Embedded
     private Coordinates coordinates;
