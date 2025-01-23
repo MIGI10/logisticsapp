@@ -1,15 +1,13 @@
 package com.hackathon.inditex.Entities;
 
 import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Embeddable
+@Getter
+@Setter
 public class Coordinates {
-    private Double latitude;
-    private Double longitude;
+    private double latitude;
+    private double longitude;
 }
