@@ -14,8 +14,8 @@ public class LogisticsCenter {
     private String name;
     private String capacity;
     private String status;
-    private int maxCapacity;
-    private int currentLoad;
+    private Integer maxCapacity;
+    private Integer currentLoad;
 
     @Embedded
     private Coordinates coordinates;

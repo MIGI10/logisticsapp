@@ -30,7 +30,7 @@ public class LogisticsCenterController {
                     .status(HttpStatus.CREATED)
                     .body(Map.of("message", "Logistics center created successfully."));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", e.getMessage()));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message", e.getMessage()));
         }
     }
 
