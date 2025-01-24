@@ -9,5 +9,4 @@ public class InditexApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(InditexApplication.class, args);
 	}
-
 }
