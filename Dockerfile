@@ -17,4 +17,7 @@ COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 3000
 
+HEALTHCHECK --interval=10s --timeout=10s --start-period=15s --retries=10 \
+  CMD curl -f http://localhost:3000/health || exit 1
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
