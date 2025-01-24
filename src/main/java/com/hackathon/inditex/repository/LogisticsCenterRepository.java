@@ -1,6 +1,6 @@
-package com.hackathon.inditex.Repositories;
+package com.hackathon.inditex.repository;
 
-import com.hackathon.inditex.Entities.LogisticsCenter;
+import com.hackathon.inditex.entity.LogisticsCenter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

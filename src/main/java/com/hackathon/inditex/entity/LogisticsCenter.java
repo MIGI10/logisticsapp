@@ -1,4 +1,4 @@
-package com.hackathon.inditex.Entities;
+package com.hackathon.inditex.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

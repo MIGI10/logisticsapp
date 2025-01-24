@@ -1,10 +1,10 @@
-package com.hackathon.inditex.Services;
+package com.hackathon.inditex.service;
 
-import com.hackathon.inditex.DTO.ProcessedOrderDTO;
-import com.hackathon.inditex.Entities.LogisticsCenter;
-import com.hackathon.inditex.Entities.Order;
-import com.hackathon.inditex.Repositories.LogisticsCenterRepository;
-import com.hackathon.inditex.Repositories.OrderRepository;
+import com.hackathon.inditex.dto.ProcessedOrderDTO;
+import com.hackathon.inditex.entity.LogisticsCenter;
+import com.hackathon.inditex.entity.Order;
+import com.hackathon.inditex.repository.LogisticsCenterRepository;
+import com.hackathon.inditex.repository.OrderRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

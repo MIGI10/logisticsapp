@@ -1,4 +1,4 @@
-package com.hackathon.inditex.DTO;
+package com.hackathon.inditex.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

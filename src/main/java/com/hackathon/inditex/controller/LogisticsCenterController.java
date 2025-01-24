@@ -1,7 +1,7 @@
-package com.hackathon.inditex.Controllers;
+package com.hackathon.inditex.controller;
 
-import com.hackathon.inditex.Entities.LogisticsCenter;
-import com.hackathon.inditex.Services.LogisticsCenterService;
+import com.hackathon.inditex.entity.LogisticsCenter;
+import com.hackathon.inditex.service.LogisticsCenterService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,11 +1,11 @@
-package com.hackathon.inditex.Controllers;
+package com.hackathon.inditex.controller;
 
-import com.hackathon.inditex.DTO.CoordinatesDTO;
-import com.hackathon.inditex.DTO.OrderCreateResponseDTO;
-import com.hackathon.inditex.DTO.OrderDTO;
-import com.hackathon.inditex.Entities.Order;
-import com.hackathon.inditex.Services.AssignmentService;
-import com.hackathon.inditex.Services.OrderService;
+import com.hackathon.inditex.dto.CoordinatesDTO;
+import com.hackathon.inditex.dto.OrderCreateResponseDTO;
+import com.hackathon.inditex.dto.OrderDTO;
+import com.hackathon.inditex.entity.Order;
+import com.hackathon.inditex.service.AssignmentService;
+import com.hackathon.inditex.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

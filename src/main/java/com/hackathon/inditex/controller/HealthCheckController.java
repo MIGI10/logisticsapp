@@ -1,5 +1,6 @@
-package com.hackathon.inditex.Controllers;
+package com.hackathon.inditex.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthCheckController {
 
     @GetMapping
-    public String healthCheck() {
-        return "API is working";
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("API is working.");
     }
 }

@@ -1,4 +1,4 @@
-package com.hackathon.inditex.Entities;
+package com.hackathon.inditex.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

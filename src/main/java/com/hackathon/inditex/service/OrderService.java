@@ -1,7 +1,7 @@
-package com.hackathon.inditex.Services;
+package com.hackathon.inditex.service;
 
-import com.hackathon.inditex.Entities.Order;
-import com.hackathon.inditex.Repositories.OrderRepository;
+import com.hackathon.inditex.entity.Order;
+import com.hackathon.inditex.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
