@@ -1,5 +1,6 @@
 package com.hackathon.inditex.controller;
 
+import com.hackathon.inditex.constant.Messages;
 import com.hackathon.inditex.dto.CenterDTO;
 import com.hackathon.inditex.dto.MessageResponseDTO;
 import com.hackathon.inditex.service.CenterService;
@@ -24,7 +25,7 @@ public class CenterController {
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createCenter(@RequestBody CenterDTO center) {
         service.createCenter(center);
-        return new MessageResponseDTO("Logistics center created successfully.");
+        return new MessageResponseDTO(Messages.CENTER_CREATED);
     }
 
     @GetMapping
@@ -37,13 +38,13 @@ public class CenterController {
     @ResponseStatus(HttpStatus.OK)
     public MessageResponseDTO updateCenter(@PathVariable Long id, @RequestBody CenterDTO center) {
         service.updateCenter(id, center);
-        return new MessageResponseDTO("Logistics center updated successfully.");
+        return new MessageResponseDTO(Messages.CENTER_UPDATED);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public MessageResponseDTO deleteCenter(@PathVariable Long id) {
         service.deleteCenter(id);
-        return new MessageResponseDTO("Logistics center deleted successfully.");
+        return new MessageResponseDTO(Messages.CENTER_DELETED);
     }
 }

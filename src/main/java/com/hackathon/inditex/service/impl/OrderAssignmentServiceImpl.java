@@ -1,5 +1,6 @@
 package com.hackathon.inditex.service.impl;
 
+import com.hackathon.inditex.constant.Messages;
 import com.hackathon.inditex.dto.ProcessedOrderDTO;
 import com.hackathon.inditex.entity.Center;
 import com.hackathon.inditex.entity.Order;
@@ -16,6 +17,7 @@ import java.util.*;
 @Service
 public class OrderAssignmentServiceImpl implements OrderAssignmentService {
 
+    private static final int EARTH_RADIUS = 6371;
     private final OrderRepository orderRepository;
     private final CenterRepository centerRepository;
     private final OrderMapper orderMapper;
@@ -29,8 +31,6 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
 
     private double haversine(double lat1, double lon1, double lat2, double lon2) {
 
-        final int R = 6371; // Radius of the Earth in km
-
         double latDistance = Math.toRadians(lat2 - lat1);
         double lonDistance = Math.toRadians(lon2 - lon1);
 
@@ -40,7 +40,7 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
 
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        return R * c; // in km
+        return EARTH_RADIUS * c; // in km
     }
 
     @Override
@@ -59,7 +59,7 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
                 // No centers support the order's size
                 result.setDistance(null);
                 result.setAssignedLogisticsCenter(null);
-                result.setMessage("No available centers support the order type.");
+                result.setMessage(Messages.CENTER_UNSUPPORTED_ERR);
                 results.add(result);
                 continue;
             }
@@ -69,7 +69,7 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
                 // Centers support the size but are at max capacity
                 result.setDistance(null);
                 result.setAssignedLogisticsCenter(null);
-                result.setMessage("All centers are at maximum capacity.");
+                result.setMessage(Messages.CENTER_FULL_ERR);
                 results.add(result);
                 continue;
             }
@@ -106,7 +106,7 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
             } else {
                 result.setDistance(null);
                 result.setAssignedLogisticsCenter(null);
-                result.setMessage("No available centers.");
+                result.setMessage(Messages.CENTER_UNAVAILABLE_ERR);
             }
 
             results.add(result);

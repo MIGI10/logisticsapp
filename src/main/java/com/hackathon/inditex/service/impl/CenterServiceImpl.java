@@ -1,5 +1,6 @@
 package com.hackathon.inditex.service.impl;
 
+import com.hackathon.inditex.constant.Messages;
 import com.hackathon.inditex.dto.CenterDTO;
 import com.hackathon.inditex.entity.Center;
 import com.hackathon.inditex.exception.CenterAlreadyExistsException;
@@ -37,11 +38,11 @@ public class CenterServiceImpl implements CenterService {
                 center.getCoordinates().getLatitude(),
                 center.getCoordinates().getLongitude()
         ).ifPresent(existing -> {
-            throw new CenterAlreadyExistsException("There is already a logistics center in that position.");
+            throw new CenterAlreadyExistsException(Messages.CENTER_EXISTS_ERR);
         });
 
         if (center.getCurrentLoad() > center.getMaxCapacity()) {
-            throw new CenterExceedsCapacityException("Current load cannot exceed max capacity.");
+            throw new CenterExceedsCapacityException(Messages.CENTER_EXCEEDS_CAPACITY_ERR);
         }
 
         repository.save(center);
@@ -57,14 +58,14 @@ public class CenterServiceImpl implements CenterService {
     public void updateCenter(Long id, CenterDTO updatedCenterRequest) {
 
         Center existingCenter = repository.findById(id)
-                .orElseThrow(() -> new CenterNotFoundException("Center not found."));
+                .orElseThrow(() -> new CenterNotFoundException(Messages.CENTER_NOT_FOUND_ERR));
 
         Center updatedCenter = centerMapper.toCenter(updatedCenterRequest);
 
         BeanUtils.copyProperties(updatedCenter, existingCenter, getNullPropertyNames(updatedCenter));
 
         if (existingCenter.getCurrentLoad() > existingCenter.getMaxCapacity()) {
-            throw new CenterExceedsCapacityException("Current load cannot exceed max capacity.");
+            throw new CenterExceedsCapacityException(Messages.CENTER_EXCEEDS_CAPACITY_ERR);
         }
 
         repository.save(existingCenter);
