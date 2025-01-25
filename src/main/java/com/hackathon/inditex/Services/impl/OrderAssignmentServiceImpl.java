@@ -22,6 +22,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class OrderAssignmentServiceImpl implements OrderAssignmentService {
 
+    public static final String TEST = "test";
     private final OrderRepository orderRepository;
     private final CenterRepository centerRepository;
     private final OrderMapper orderMapper;

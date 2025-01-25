@@ -20,6 +20,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class OrderController {
 
+    public static final String TEST = "test";
     private final OrderService orderService;
     private final OrderAssignmentService orderAssignmentService;
 

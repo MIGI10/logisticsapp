@@ -18,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CenterController {
 
+    public static final String TEST = "test";
     private final CenterService service;
 
     /**
