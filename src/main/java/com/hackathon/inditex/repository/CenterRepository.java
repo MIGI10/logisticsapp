@@ -13,9 +13,9 @@ import java.util.Optional;
 public interface CenterRepository extends JpaRepository<Center, Long> {
     Optional<Center> findByCoordinates_LatitudeAndCoordinates_Longitude(double latitude, double longitude);
 
-    @Query("SELECT c FROM Center c WHERE LOWER(c.capacity) LIKE LOWER(CONCAT('%', :size, '%'))")
+    @Query("SELECT center FROM Center center WHERE LOWER(center.capacity) LIKE LOWER(CONCAT('%', :size, '%'))")
     List<Center> findSupportingCenters(@Param("size") String size);
 
-    @Query("SELECT c FROM Center c WHERE LOWER(c.capacity) LIKE LOWER(CONCAT('%', :size, '%')) AND c.currentLoad < c.maxCapacity")
+    @Query("SELECT center FROM Center center WHERE LOWER(center.capacity) LIKE LOWER(CONCAT('%', :size, '%')) AND center.currentLoad < center.maxCapacity")
     List<Center> findAvailableCenters(@Param("size") String size);
 }
