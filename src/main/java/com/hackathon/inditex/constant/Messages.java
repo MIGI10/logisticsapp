@@ -10,7 +10,7 @@ public final class Messages {
      */
     private Messages() {}
 
-    public static final String API_WORKING = "API is working.";
+    public static final String API_WORKING = "API is working";
     public static final String CENTER_CREATED = "Logistics center created successfully.";
     public static final String CENTER_UPDATED = "Logistics center updated successfully.";
     public static final String CENTER_DELETED = "Logistics center deleted successfully.";
