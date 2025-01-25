@@ -22,7 +22,7 @@ COPY --from=build /app/target/*.jar app.jar
 EXPOSE 3000
 
 # Define a health check command that will regularly verify the service's health endpoint
-HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=10 \
+HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=5 \
   CMD curl -f http://localhost:3000/health || exit 1
 
-ENTRYPOINT ["java", "-jar", "app.jar", "--spring.datasource.password=root"]
+ENTRYPOINT ["java", "-jar", "app.jar", "--spring.datasource.username=root", "--spring.datasource.password=root"]
