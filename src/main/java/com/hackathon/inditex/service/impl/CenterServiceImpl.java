@@ -41,7 +41,7 @@ public class CenterServiceImpl implements CenterService {
 
         Center center = centerMapper.toCenter(centerRequest);
 
-        repository.findByCoordinates_LatitudeAndCoordinates_Longitude(
+        repository.findByCoordinates(
                 center.getCoordinates().getLatitude(),
                 center.getCoordinates().getLongitude()
         ).ifPresent(existing -> {

@@ -10,15 +10,33 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Repository for Center entity
+ * Repository for Center entity, using JPQL queries.
  */
 @Repository
 public interface CenterRepository extends JpaRepository<Center, Long> {
-    Optional<Center> findByCoordinates_LatitudeAndCoordinates_Longitude(double latitude, double longitude);
 
-    @Query("SELECT center FROM Center center WHERE LOWER(center.capacity) LIKE LOWER(CONCAT('%', :size, '%'))")
+    /**
+     * Find a center by exact latitude and longitude coordinates.
+     */
+    @Query("SELECT c FROM Center c " +
+            "WHERE c.coordinates.latitude = :latitude " +
+            "  AND c.coordinates.longitude = :longitude")
+    Optional<Center> findByCoordinates(@Param("latitude") double latitude,
+                                       @Param("longitude") double longitude);
+
+    /**
+     * Find centers that support a given size (case-insensitive partial match on 'capacity').
+     */
+    @Query("SELECT c FROM Center c " +
+            "WHERE LOWER(c.capacity) LIKE LOWER(CONCAT('%', :size, '%'))")
     List<Center> findSupportingCenters(@Param("size") String size);
 
-    @Query("SELECT center FROM Center center WHERE LOWER(center.capacity) LIKE LOWER(CONCAT('%', :size, '%')) AND center.currentLoad < center.maxCapacity")
+    /**
+     * Find centers that support a given size and have capacity available
+     * (i.e., currentLoad < maxCapacity).
+     */
+    @Query("SELECT c FROM Center c " +
+            "WHERE LOWER(c.capacity) LIKE LOWER(CONCAT('%', :size, '%')) " +
+            "  AND c.currentLoad < c.maxCapacity")
     List<Center> findAvailableCenters(@Param("size") String size);
 }

@@ -40,7 +40,7 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
     @Transactional
     public Map<String, List<ProcessedOrderDTO>> assignPendingOrders() {
 
-        List<Order> pendingOrders = orderRepository.findByStatusIgnoreCaseOrderByIdAsc("PENDING");
+        List<Order> pendingOrders = orderRepository.findByStatus("PENDING");
         List<ProcessedOrderDTO> results = new ArrayList<>();
 
         for (Order order : pendingOrders) {

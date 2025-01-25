@@ -12,7 +12,7 @@ COPY src ./src
 # Build the application, skipping tests to speed up the build
 RUN mvn clean package -DskipTests
 
-FROM amazoncorretto:21.0.0
+FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
@@ -22,7 +22,7 @@ COPY --from=build /app/target/*.jar app.jar
 EXPOSE 3000
 
 # Define a health check command that will regularly verify the service's health endpoint
-HEALTHCHECK --interval=10s --timeout=10s --start-period=15s --retries=10 \
+HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=10 \
   CMD curl -f http://localhost:3000/health || exit 1
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
