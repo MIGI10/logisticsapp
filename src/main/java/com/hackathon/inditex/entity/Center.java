@@ -1,15 +1,13 @@
 package com.hackathon.inditex.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * Entity class for Logistics Center
  */
 @Entity
-@Getter
-@Setter
+@Data
 public class Center {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

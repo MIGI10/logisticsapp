@@ -3,16 +3,14 @@ package com.hackathon.inditex.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * Entity class for Order
  */
 @Entity(name = "CustomerOrder")
 @Table(name = "orders")
-@Getter
-@Setter
+@Data
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

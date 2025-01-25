@@ -2,12 +2,14 @@ package com.hackathon.inditex.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * DTO class for CreateOrderResponse
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class CreateOrderResponseDTO {
     private Long orderId;
     private Long customerId;
