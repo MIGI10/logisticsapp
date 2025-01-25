@@ -8,6 +8,7 @@ import lombok.Data;
  */
 @Entity
 @Data
+@Table(name = "centers", uniqueConstraints = @UniqueConstraint(columnNames = {"latitude", "longitude"}))
 public class Center {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +18,6 @@ public class Center {
     private String status;
     private Integer maxCapacity;
     private Integer currentLoad;
-
     @Embedded
     private Coordinates coordinates;
 }

@@ -17,7 +17,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     /**
      * Find orders by status (case-insensitive), sorted by ID ascending.
      */
-    @Query("SELECT o FROM CustomerOrder o " +
+    @Query("SELECT o FROM Order o " +
             "WHERE LOWER(o.status) = LOWER(:status) " +
             "ORDER BY o.id ASC")
     List<Order> findByStatus(@Param("status") String status);
