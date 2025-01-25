@@ -1,10 +1,10 @@
 package com.hackathon.inditex.controller;
 
 import com.hackathon.inditex.dto.CoordinatesDTO;
-import com.hackathon.inditex.dto.OrderCreateResponseDTO;
+import com.hackathon.inditex.dto.CreateOrderResponseDTO;
 import com.hackathon.inditex.dto.OrderDTO;
 import com.hackathon.inditex.entity.Order;
-import com.hackathon.inditex.service.AssignmentService;
+import com.hackathon.inditex.service.OrderAssignmentService;
 import com.hackathon.inditex.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,16 +19,16 @@ import java.util.stream.Collectors;
 public class OrderController {
 
     private final OrderService orderService;
-    private final AssignmentService assignmentService;
+    private final OrderAssignmentService orderAssignmentService;
 
     @Autowired
-    public OrderController(OrderService orderService, AssignmentService assignmentService) {
+    public OrderController(OrderService orderService, OrderAssignmentService orderAssignmentService) {
         this.orderService = orderService;
-        this.assignmentService = assignmentService;
+        this.orderAssignmentService = orderAssignmentService;
     }
 
     @PostMapping
-    public ResponseEntity<OrderCreateResponseDTO> createOrder(@RequestBody Order order) {
+    public ResponseEntity<CreateOrderResponseDTO> createOrder(@RequestBody Order order) {
 
         Order created = orderService.createOrder(order);
 
@@ -37,7 +37,7 @@ public class OrderController {
                 created.getCoordinates() != null ? created.getCoordinates().getLongitude() : null
         );
 
-        OrderCreateResponseDTO response = new OrderCreateResponseDTO(
+        CreateOrderResponseDTO response = new CreateOrderResponseDTO(
                 created.getId(),
                 created.getCustomerId(),
                 created.getSize(),
@@ -75,6 +75,6 @@ public class OrderController {
 
     @PostMapping("/order-assignations")
     public ResponseEntity<?> assignOrders() {
-        return ResponseEntity.ok(assignmentService.assignPendingOrders());
+        return ResponseEntity.ok(orderAssignmentService.assignPendingOrders());
     }
 }

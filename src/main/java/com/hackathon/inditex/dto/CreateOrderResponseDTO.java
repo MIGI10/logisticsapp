@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class OrderCreateResponseDTO {
+public class CreateOrderResponseDTO {
     private Long orderId;
     private Long customerId;
     private String size;

@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class AssignmentServiceImpl implements AssignmentService {
+public class OrderAssignmentServiceImpl implements OrderAssignmentService {
 
     private final OrderRepository orderRepository;
 
     private final CenterRepository centerRepository;
 
     @Autowired
-    public AssignmentServiceImpl(OrderRepository orderRepository, CenterRepository centerRepository) {
+    public OrderAssignmentServiceImpl(OrderRepository orderRepository, CenterRepository centerRepository) {
         this.orderRepository = orderRepository;
         this.centerRepository = centerRepository;
     }
