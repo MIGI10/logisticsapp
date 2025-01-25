@@ -1,4 +1,4 @@
-package com.hackathon.inditex.service;
+package com.hackathon.inditex.service.impl;
 
 import com.hackathon.inditex.dto.ProcessedOrderDTO;
 import com.hackathon.inditex.entity.Center;
@@ -6,6 +6,7 @@ import com.hackathon.inditex.entity.Order;
 import com.hackathon.inditex.mapper.OrderMapper;
 import com.hackathon.inditex.repository.CenterRepository;
 import com.hackathon.inditex.repository.OrderRepository;
+import com.hackathon.inditex.service.OrderAssignmentService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

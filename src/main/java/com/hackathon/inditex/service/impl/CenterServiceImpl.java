@@ -1,4 +1,4 @@
-package com.hackathon.inditex.service;
+package com.hackathon.inditex.service.impl;
 
 import com.hackathon.inditex.dto.CenterDTO;
 import com.hackathon.inditex.entity.Center;
@@ -7,6 +7,7 @@ import com.hackathon.inditex.exception.CenterExceedsCapacityException;
 import com.hackathon.inditex.exception.CenterNotFoundException;
 import com.hackathon.inditex.mapper.CenterMapper;
 import com.hackathon.inditex.repository.CenterRepository;
+import com.hackathon.inditex.service.CenterService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

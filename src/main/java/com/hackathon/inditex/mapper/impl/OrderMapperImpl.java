@@ -1,4 +1,4 @@
-package com.hackathon.inditex.mapper;
+package com.hackathon.inditex.mapper.impl;
 
 import com.hackathon.inditex.dto.CoordinatesDTO;
 import com.hackathon.inditex.dto.CreateOrderResponseDTO;
@@ -6,6 +6,7 @@ import com.hackathon.inditex.dto.OrderDTO;
 import com.hackathon.inditex.dto.ProcessedOrderDTO;
 import com.hackathon.inditex.entity.Coordinates;
 import com.hackathon.inditex.entity.Order;
+import com.hackathon.inditex.mapper.OrderMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
