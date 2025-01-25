@@ -1,9 +1,11 @@
 package com.hackathon.inditex.service;
 
+import com.hackathon.inditex.dto.CenterDTO;
 import com.hackathon.inditex.entity.Center;
 import com.hackathon.inditex.exception.CenterAlreadyExistsException;
 import com.hackathon.inditex.exception.CenterExceedsCapacityException;
 import com.hackathon.inditex.exception.CenterNotFoundException;
+import com.hackathon.inditex.mapper.CenterMapper;
 import com.hackathon.inditex.repository.CenterRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +19,18 @@ import java.util.List;
 public class CenterServiceImpl implements CenterService {
 
     private final CenterRepository repository;
+    private final CenterMapper centerMapper;
 
     @Autowired
-    public CenterServiceImpl(CenterRepository repository) {
+    public CenterServiceImpl(CenterRepository repository, CenterMapper centerMapper) {
         this.repository = repository;
+        this.centerMapper = centerMapper;
     }
 
     @Override
-    public void createCenter(Center center) {
+    public void createCenter(CenterDTO centerRequest) {
+
+        Center center = centerMapper.toCenter(centerRequest);
 
         repository.findByCoordinates_LatitudeAndCoordinates_Longitude(
                 center.getCoordinates().getLatitude(),
@@ -41,15 +47,18 @@ public class CenterServiceImpl implements CenterService {
     }
 
     @Override
-    public List<Center> getAllCenters() {
-        return repository.findAll();
+    public List<CenterDTO> getAllCenters() {
+        List<Center> centers = repository.findAll();
+        return centerMapper.toCenterDTOList(centers);
     }
 
     @Override
-    public void updateCenter(Long id, Center updatedCenter) {
+    public void updateCenter(Long id, CenterDTO updatedCenterRequest) {
 
         Center existingCenter = repository.findById(id)
                 .orElseThrow(() -> new CenterNotFoundException("Center not found."));
+
+        Center updatedCenter = centerMapper.toCenter(updatedCenterRequest);
 
         BeanUtils.copyProperties(updatedCenter, existingCenter, getNullPropertyNames(updatedCenter));
 

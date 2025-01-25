@@ -1,11 +1,11 @@
 package com.hackathon.inditex.service;
 
-import com.hackathon.inditex.entity.Order;
+import com.hackathon.inditex.dto.CreateOrderResponseDTO;
+import com.hackathon.inditex.dto.OrderDTO;
 
 import java.util.List;
 
 public interface OrderService {
-    Order createOrder(Order order);
-
-    List<Order> getAllOrders();
+    CreateOrderResponseDTO createOrder(OrderDTO order);
+    List<OrderDTO> getAllOrders();
 }

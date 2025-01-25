@@ -3,6 +3,7 @@ package com.hackathon.inditex.service;
 import com.hackathon.inditex.dto.ProcessedOrderDTO;
 import com.hackathon.inditex.entity.Center;
 import com.hackathon.inditex.entity.Order;
+import com.hackathon.inditex.mapper.OrderMapper;
 import com.hackathon.inditex.repository.CenterRepository;
 import com.hackathon.inditex.repository.OrderRepository;
 import jakarta.transaction.Transactional;
@@ -15,13 +16,14 @@ import java.util.*;
 public class OrderAssignmentServiceImpl implements OrderAssignmentService {
 
     private final OrderRepository orderRepository;
-
     private final CenterRepository centerRepository;
+    private final OrderMapper orderMapper;
 
     @Autowired
-    public OrderAssignmentServiceImpl(OrderRepository orderRepository, CenterRepository centerRepository) {
+    public OrderAssignmentServiceImpl(OrderRepository orderRepository, CenterRepository centerRepository, OrderMapper orderMapper) {
         this.orderRepository = orderRepository;
         this.centerRepository = centerRepository;
+        this.orderMapper = orderMapper;
     }
 
     private double haversine(double lat1, double lon1, double lat2, double lon2) {
@@ -45,16 +47,13 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
     public Map<String, List<ProcessedOrderDTO>> assignPendingOrders() {
 
         List<Order> pendingOrders = orderRepository.findByStatusIgnoreCaseOrderByIdAsc("PENDING");
-
         List<ProcessedOrderDTO> results = new ArrayList<>();
 
         for (Order order : pendingOrders) {
-            ProcessedOrderDTO result = new ProcessedOrderDTO();
-            result.setOrderId(order.getId());
-            result.setStatus(order.getStatus());
+
+            ProcessedOrderDTO result = orderMapper.toProcessedOrderDTO(order);
 
             List<Center> supportingCenters = centerRepository.findSupportingCenters(order.getSize());
-
             if (supportingCenters.isEmpty()) {
                 // No centers support the order's size
                 result.setDistance(null);
@@ -65,7 +64,6 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
             }
 
             List<Center> availableCenters = centerRepository.findAvailableCenters(order.getSize());
-
             if (availableCenters.isEmpty()) {
                 // Centers support the size but are at max capacity
                 result.setDistance(null);
@@ -75,19 +73,16 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
                 continue;
             }
 
-
             Center closestCenter = null;
             double minDistance = Double.MAX_VALUE;
 
             for (Center center : availableCenters) {
-
                 double distance = haversine(
                         order.getCoordinates().getLatitude(),
                         order.getCoordinates().getLongitude(),
                         center.getCoordinates().getLatitude(),
                         center.getCoordinates().getLongitude()
                 );
-
                 if (distance < minDistance) {
                     minDistance = distance;
                     closestCenter = center;
@@ -95,6 +90,7 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
             }
 
             if (closestCenter != null) {
+
                 order.setAssignedCenter(closestCenter);
                 order.setStatus("ASSIGNED");
                 orderRepository.save(order);

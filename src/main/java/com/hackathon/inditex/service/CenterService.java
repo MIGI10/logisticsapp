@@ -1,15 +1,15 @@
 package com.hackathon.inditex.service;
 
-import com.hackathon.inditex.entity.Center;
+import com.hackathon.inditex.dto.CenterDTO;
 
 import java.util.List;
 
 public interface CenterService {
-    void createCenter(Center center);
+    void createCenter(CenterDTO center);
 
-    List<Center> getAllCenters();
+    List<CenterDTO> getAllCenters();
 
-    void updateCenter(Long id, Center updatedCenter);
+    void updateCenter(Long id, CenterDTO updatedCenter);
 
     void deleteCenter(Long id);
 }

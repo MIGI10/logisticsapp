@@ -1,7 +1,7 @@
 package com.hackathon.inditex.controller;
 
+import com.hackathon.inditex.dto.CenterDTO;
 import com.hackathon.inditex.dto.MessageResponseDTO;
-import com.hackathon.inditex.entity.Center;
 import com.hackathon.inditex.service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,20 +22,20 @@ public class CenterController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createCenter(@RequestBody Center center) {
+    public MessageResponseDTO createCenter(@RequestBody CenterDTO center) {
         service.createCenter(center);
         return new MessageResponseDTO("Logistics center created successfully.");
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Center> getAllCenters() {
+    public List<CenterDTO> getAllCenters() {
         return service.getAllCenters();
     }
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MessageResponseDTO updateCenter(@PathVariable Long id, @RequestBody Center center) {
+    public MessageResponseDTO updateCenter(@PathVariable Long id, @RequestBody CenterDTO center) {
         service.updateCenter(id, center);
         return new MessageResponseDTO("Logistics center updated successfully.");
     }

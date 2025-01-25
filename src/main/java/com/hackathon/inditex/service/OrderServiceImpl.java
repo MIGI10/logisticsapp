@@ -1,6 +1,9 @@
 package com.hackathon.inditex.service;
 
+import com.hackathon.inditex.dto.CreateOrderResponseDTO;
+import com.hackathon.inditex.dto.OrderDTO;
 import com.hackathon.inditex.entity.Order;
+import com.hackathon.inditex.mapper.OrderMapper;
 import com.hackathon.inditex.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,20 +14,24 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
+    private final OrderMapper orderMapper;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper) {
         this.orderRepository = orderRepository;
+        this.orderMapper = orderMapper;
     }
 
     @Override
-    public Order createOrder(Order order) {
-        order.setStatus("PENDING");
-        return orderRepository.save(order);
+    public CreateOrderResponseDTO createOrder(OrderDTO orderRequest) {
+        Order order = orderMapper.toOrder(orderRequest);
+        Order createdOrder = orderRepository.save(order);
+        return orderMapper.toCreateOrderResponseDTO(createdOrder);
     }
 
     @Override
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+    public List<OrderDTO> getAllOrders() {
+        List<Order> orders = orderRepository.findAll();
+        return orderMapper.toOrderDTOList(orders);
     }
 }
