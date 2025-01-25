@@ -17,6 +17,9 @@ import java.beans.PropertyDescriptor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service class for the Center entity.
+ */
 @Service
 public class CenterServiceImpl implements CenterService {
 
@@ -29,6 +32,10 @@ public class CenterServiceImpl implements CenterService {
         this.centerMapper = centerMapper;
     }
 
+    /**
+     * Creates a new center.
+     * @param centerRequest The center to be created.
+     */
     @Override
     public void createCenter(CenterDTO centerRequest) {
 
@@ -48,12 +55,20 @@ public class CenterServiceImpl implements CenterService {
         repository.save(center);
     }
 
+    /**
+     * Retrieves all centers.
+     * @return A list of all centers.
+     */
     @Override
     public List<CenterDTO> getAllCenters() {
         List<Center> centers = repository.findAll();
         return centerMapper.toCenterDTOList(centers);
     }
 
+    /** Updates a center.
+     * @param id The id of the center to be updated.
+     * @param updatedCenterRequest The updated center.
+     */
     @Override
     public void updateCenter(Long id, CenterDTO updatedCenterRequest) {
 
@@ -71,11 +86,19 @@ public class CenterServiceImpl implements CenterService {
         repository.save(existingCenter);
     }
 
+    /** Deletes a center.
+     * @param id The id of the center to be deleted.
+     */
     @Override
     public void deleteCenter(Long id) {
         repository.deleteById(id);
     }
 
+    /**
+     * Returns the names of the properties that are null in the source object.
+     * @param source The source object.
+     * @return The names of the properties that are null in the source object.
+     */
     private String[] getNullPropertyNames(Object source) {
 
         List<String> nullPropertyNames = new ArrayList<>();

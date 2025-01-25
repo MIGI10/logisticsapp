@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Repository for Center entity
+ */
 @Repository
 public interface CenterRepository extends JpaRepository<Center, Long> {
     Optional<Center> findByCoordinates_LatitudeAndCoordinates_Longitude(double latitude, double longitude);

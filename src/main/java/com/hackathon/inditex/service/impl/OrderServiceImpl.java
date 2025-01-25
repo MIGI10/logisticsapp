@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service class for orders.
+ */
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -23,6 +26,11 @@ public class OrderServiceImpl implements OrderService {
         this.orderMapper = orderMapper;
     }
 
+    /**
+     * Creates a new order.
+     * @param orderRequest The order to create.
+     * @return The created order.
+     */
     @Override
     public CreateOrderResponseDTO createOrder(OrderDTO orderRequest) {
         Order order = orderMapper.toOrder(orderRequest);
@@ -30,6 +38,10 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toCreateOrderResponseDTO(createdOrder);
     }
 
+    /**
+     * Retrieves all orders.
+     * @return A list of all orders.
+     */
     @Override
     public List<OrderDTO> getAllOrders() {
         List<Order> orders = orderRepository.findAll();

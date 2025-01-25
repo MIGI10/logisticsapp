@@ -3,6 +3,9 @@ package com.hackathon.inditex.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * DTO class for CreateOrderResponse
+ */
 @Data
 @AllArgsConstructor
 public class CreateOrderResponseDTO {

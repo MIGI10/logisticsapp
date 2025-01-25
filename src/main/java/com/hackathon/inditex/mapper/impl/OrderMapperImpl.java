@@ -13,9 +13,18 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of the OrderMapper interface.
+ */
 @Component
 public class OrderMapperImpl implements OrderMapper {
 
+    /**
+     * Converts an OrderDTO object to an Order object.
+     *
+     * @param dto the OrderDTO object to convert
+     * @return the converted Order object
+     */
     @Override
     public Order toOrder(OrderDTO dto) {
         if (dto == null) {
@@ -36,6 +45,12 @@ public class OrderMapperImpl implements OrderMapper {
         return order;
     }
 
+    /**
+     * Converts an Order object to a CreateOrderResponseDTO object.
+     *
+     * @param order the Order object to convert
+     * @return the converted CreateOrderResponseDTO object
+     */
     @Override
     public CreateOrderResponseDTO toCreateOrderResponseDTO(Order order) {
         if (order == null) {
@@ -61,6 +76,12 @@ public class OrderMapperImpl implements OrderMapper {
         );
     }
 
+    /**
+     * Converts an Order object to an OrderDTO object.
+     *
+     * @param order the Order object to convert
+     * @return the converted OrderDTO object
+     */
     @Override
     public OrderDTO toOrderDTO(Order order) {
         if (order == null) {
@@ -85,6 +106,12 @@ public class OrderMapperImpl implements OrderMapper {
         );
     }
 
+    /**
+     * Converts a list of Order objects to a list of OrderDTO objects.
+     *
+     * @param orders the list of Order objects to convert
+     * @return the converted list of OrderDTO objects
+     */
     @Override
     public List<OrderDTO> toOrderDTOList(List<Order> orders) {
         if (orders == null) {
@@ -96,6 +123,12 @@ public class OrderMapperImpl implements OrderMapper {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Converts an Order object to a ProcessedOrderDTO object.
+     *
+     * @param order the Order object to convert
+     * @return the converted ProcessedOrderDTO object
+     */
     @Override
     public ProcessedOrderDTO toProcessedOrderDTO(Order order) {
         if (order == null) {

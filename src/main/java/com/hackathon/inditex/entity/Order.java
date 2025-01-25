@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Entity class for Order
+ */
 @Entity(name = "CustomerOrder")
 @Table(name = "orders")
 @Getter

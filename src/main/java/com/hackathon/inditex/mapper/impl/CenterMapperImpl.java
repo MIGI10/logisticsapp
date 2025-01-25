@@ -10,9 +10,18 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of the CenterMapper interface.
+ */
 @Component
 public class CenterMapperImpl implements CenterMapper {
 
+    /**
+     * Converts a CenterDTO object to a Center object.
+     *
+     * @param dto the CenterDTO object to convert
+     * @return the converted Center object
+     */
     @Override
     public Center toCenter(CenterDTO dto) {
 
@@ -38,6 +47,12 @@ public class CenterMapperImpl implements CenterMapper {
         return center;
     }
 
+    /**
+     * Converts a Center object to a CenterDTO object.
+     *
+     * @param center the Center object to convert
+     * @return the converted CenterDTO object
+     */
     @Override
     public CenterDTO toCenterDTO(Center center) {
 
@@ -63,6 +78,12 @@ public class CenterMapperImpl implements CenterMapper {
         return dto;
     }
 
+    /**
+     * Converts a list of Center objects to a list of CenterDTO objects.
+     *
+     * @param orders the list of Center objects to convert
+     * @return the converted list of CenterDTO objects
+     */
     @Override
     public List<CenterDTO> toCenterDTOList(List<Center> orders) {
         if (orders == null) {

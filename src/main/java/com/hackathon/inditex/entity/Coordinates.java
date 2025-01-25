@@ -4,6 +4,9 @@ import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Entity class for Coordinates
+ */
 @Embeddable
 @Getter
 @Setter

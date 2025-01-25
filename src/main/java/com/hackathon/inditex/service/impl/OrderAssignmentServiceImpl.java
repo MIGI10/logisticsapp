@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+/**
+ * Service class for order assignment.
+ */
 @Service
 public class OrderAssignmentServiceImpl implements OrderAssignmentService {
 
@@ -29,6 +32,10 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
         this.orderMapper = orderMapper;
     }
 
+    /**
+     * Assigns pending orders to available logistics centers.
+     * @return A map containing the processed orders.
+     */
     @Override
     @Transactional
     public Map<String, List<ProcessedOrderDTO>> assignPendingOrders() {

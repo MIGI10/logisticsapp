@@ -3,6 +3,9 @@ package com.hackathon.inditex.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * DTO class for Order
+ */
 @Data
 @AllArgsConstructor
 public class OrderDTO {

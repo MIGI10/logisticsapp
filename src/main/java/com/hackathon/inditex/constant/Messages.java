@@ -1,7 +1,13 @@
 package com.hackathon.inditex.constant;
 
+/**
+ * Messages class to store all the messages used in the application.
+ */
 public final class Messages {
 
+    /**
+     * Private constructor to prevent instantiation.
+     */
     private Messages() {}
 
     public static final String API_WORKING = "API is working.";

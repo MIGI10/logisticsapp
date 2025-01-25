@@ -7,6 +7,9 @@ import com.hackathon.inditex.entity.Order;
 
 import java.util.List;
 
+/**
+ * Mapper for Order entity
+ */
 public interface OrderMapper {
 
     Order toOrder(OrderDTO dto);

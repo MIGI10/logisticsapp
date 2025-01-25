@@ -4,6 +4,9 @@ import com.hackathon.inditex.dto.CenterDTO;
 
 import java.util.List;
 
+/**
+ * Service for Center entity
+ */
 public interface CenterService {
     void createCenter(CenterDTO center);
 
