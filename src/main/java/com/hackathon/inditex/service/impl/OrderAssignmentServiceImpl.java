@@ -2,8 +2,8 @@ package com.hackathon.inditex.service.impl;
 
 import com.hackathon.inditex.constant.Messages;
 import com.hackathon.inditex.dto.ProcessedOrderDTO;
-import com.hackathon.inditex.entity.Center;
-import com.hackathon.inditex.entity.Order;
+import com.hackathon.inditex.Entities.Center;
+import com.hackathon.inditex.Entities.Order;
 import com.hackathon.inditex.mapper.OrderMapper;
 import com.hackathon.inditex.repository.CenterRepository;
 import com.hackathon.inditex.repository.OrderRepository;
@@ -11,7 +11,6 @@ import com.hackathon.inditex.service.OrderAssignmentService;
 import com.hackathon.inditex.util.GeoUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

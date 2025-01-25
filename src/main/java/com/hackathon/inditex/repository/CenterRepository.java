@@ -1,6 +1,6 @@
 package com.hackathon.inditex.repository;
 
-import com.hackathon.inditex.entity.Center;
+import com.hackathon.inditex.Entities.Center;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

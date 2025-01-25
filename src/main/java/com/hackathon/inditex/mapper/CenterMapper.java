@@ -1,7 +1,7 @@
 package com.hackathon.inditex.mapper;
 
 import com.hackathon.inditex.dto.CenterDTO;
-import com.hackathon.inditex.entity.Center;
+import com.hackathon.inditex.Entities.Center;
 
 import java.util.List;
 

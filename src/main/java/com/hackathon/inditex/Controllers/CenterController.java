@@ -1,11 +1,10 @@
-package com.hackathon.inditex.controller;
+package com.hackathon.inditex.Controllers;
 
 import com.hackathon.inditex.constant.Messages;
 import com.hackathon.inditex.dto.CenterDTO;
 import com.hackathon.inditex.dto.MessageResponseDTO;
 import com.hackathon.inditex.service.CenterService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

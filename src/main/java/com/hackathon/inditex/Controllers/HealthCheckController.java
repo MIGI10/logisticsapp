@@ -1,4 +1,4 @@
-package com.hackathon.inditex.controller;
+package com.hackathon.inditex.Controllers;
 
 import com.hackathon.inditex.constant.Messages;
 import org.springframework.web.bind.annotation.GetMapping;

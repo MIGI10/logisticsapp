@@ -1,4 +1,4 @@
-package com.hackathon.inditex.controller;
+package com.hackathon.inditex.Controllers;
 
 import com.hackathon.inditex.dto.CreateOrderResponseDTO;
 import com.hackathon.inditex.dto.OrderDTO;
@@ -6,7 +6,6 @@ import com.hackathon.inditex.dto.ProcessedOrderDTO;
 import com.hackathon.inditex.service.OrderAssignmentService;
 import com.hackathon.inditex.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

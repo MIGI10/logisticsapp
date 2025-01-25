@@ -2,12 +2,11 @@ package com.hackathon.inditex.service.impl;
 
 import com.hackathon.inditex.dto.CreateOrderResponseDTO;
 import com.hackathon.inditex.dto.OrderDTO;
-import com.hackathon.inditex.entity.Order;
+import com.hackathon.inditex.Entities.Order;
 import com.hackathon.inditex.mapper.OrderMapper;
 import com.hackathon.inditex.repository.OrderRepository;
 import com.hackathon.inditex.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

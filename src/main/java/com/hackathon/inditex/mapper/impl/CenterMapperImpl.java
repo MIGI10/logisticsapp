@@ -2,8 +2,8 @@ package com.hackathon.inditex.mapper.impl;
 
 import com.hackathon.inditex.dto.CenterDTO;
 import com.hackathon.inditex.dto.CoordinatesDTO;
-import com.hackathon.inditex.entity.Center;
-import com.hackathon.inditex.entity.Coordinates;
+import com.hackathon.inditex.Entities.Center;
+import com.hackathon.inditex.Entities.Coordinates;
 import com.hackathon.inditex.mapper.CenterMapper;
 import org.springframework.stereotype.Component;
 
