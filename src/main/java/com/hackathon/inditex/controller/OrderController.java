@@ -3,15 +3,16 @@ package com.hackathon.inditex.controller;
 import com.hackathon.inditex.dto.CoordinatesDTO;
 import com.hackathon.inditex.dto.CreateOrderResponseDTO;
 import com.hackathon.inditex.dto.OrderDTO;
+import com.hackathon.inditex.dto.ProcessedOrderDTO;
 import com.hackathon.inditex.entity.Order;
 import com.hackathon.inditex.service.OrderAssignmentService;
 import com.hackathon.inditex.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -28,7 +29,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateOrderResponseDTO> createOrder(@RequestBody Order order) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public CreateOrderResponseDTO createOrder(@RequestBody Order order) {
 
         Order created = orderService.createOrder(order);
 
@@ -37,7 +39,7 @@ public class OrderController {
                 created.getCoordinates() != null ? created.getCoordinates().getLongitude() : null
         );
 
-        CreateOrderResponseDTO response = new CreateOrderResponseDTO(
+        return new CreateOrderResponseDTO(
                 created.getId(),
                 created.getCustomerId(),
                 created.getSize(),
@@ -46,15 +48,15 @@ public class OrderController {
                 created.getStatus(),
                 "Order created successfully in PENDING status."
         );
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping
-    public ResponseEntity<List<OrderDTO>> getAllOrders() {
+    @ResponseStatus(HttpStatus.OK)
+    public List<OrderDTO> getAllOrders() {
+
         List<Order> orders = orderService.getAllOrders();
 
-        List<OrderDTO> responseList = orders.stream().map(order -> {
+        return orders.stream().map(order -> {
             CoordinatesDTO coordsDTO = new CoordinatesDTO(
                     order.getCoordinates() != null ? order.getCoordinates().getLatitude() : null,
                     order.getCoordinates() != null ? order.getCoordinates().getLongitude() : null
@@ -69,12 +71,11 @@ public class OrderController {
                     coordsDTO
             );
         }).collect(Collectors.toList());
-
-        return ResponseEntity.ok(responseList);
     }
 
     @PostMapping("/order-assignations")
-    public ResponseEntity<?> assignOrders() {
-        return ResponseEntity.ok(orderAssignmentService.assignPendingOrders());
+    @ResponseStatus(HttpStatus.OK)
+    public Map<String, List<ProcessedOrderDTO>> assignOrders() {
+        return orderAssignmentService.assignPendingOrders();
     }
 }

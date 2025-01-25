@@ -1,8 +1,10 @@
 package com.hackathon.inditex.service;
 
 import com.hackathon.inditex.entity.Center;
+import com.hackathon.inditex.exception.CenterAlreadyExistsException;
+import com.hackathon.inditex.exception.CenterExceedsCapacityException;
+import com.hackathon.inditex.exception.CenterNotFoundException;
 import com.hackathon.inditex.repository.CenterRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,11 +30,11 @@ public class CenterServiceImpl implements CenterService {
                 center.getCoordinates().getLatitude(),
                 center.getCoordinates().getLongitude()
         ).ifPresent(existing -> {
-            throw new IllegalArgumentException("There is already a logistics center in that position.");
+            throw new CenterAlreadyExistsException("There is already a logistics center in that position.");
         });
 
         if (center.getCurrentLoad() > center.getMaxCapacity()) {
-            throw new IllegalArgumentException("Current load cannot exceed max capacity.");
+            throw new CenterExceedsCapacityException("Current load cannot exceed max capacity.");
         }
 
         repository.save(center);
@@ -47,12 +49,12 @@ public class CenterServiceImpl implements CenterService {
     public void updateCenter(Long id, Center updatedCenter) {
 
         Center existingCenter = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Center not found."));
+                .orElseThrow(() -> new CenterNotFoundException("Center not found."));
 
         BeanUtils.copyProperties(updatedCenter, existingCenter, getNullPropertyNames(updatedCenter));
 
         if (existingCenter.getCurrentLoad() > existingCenter.getMaxCapacity()) {
-            throw new IllegalArgumentException("Current load cannot exceed max capacity.");
+            throw new CenterExceedsCapacityException("Current load cannot exceed max capacity.");
         }
 
         repository.save(existingCenter);

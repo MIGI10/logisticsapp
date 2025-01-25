@@ -1,15 +1,13 @@
 package com.hackathon.inditex.controller;
 
+import com.hackathon.inditex.dto.MessageResponseDTO;
 import com.hackathon.inditex.entity.Center;
 import com.hackathon.inditex.service.CenterService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/centers")
@@ -23,39 +21,29 @@ public class CenterController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createCenter(@RequestBody Center center) {
-        try {
-            service.createCenter(center);
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(Map.of("message", "Logistics center created successfully."));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message", e.getMessage()));
-        }
+    @ResponseStatus(HttpStatus.CREATED)
+    public MessageResponseDTO createCenter(@RequestBody Center center) {
+        service.createCenter(center);
+        return new MessageResponseDTO("Logistics center created successfully.");
     }
 
     @GetMapping
-    public ResponseEntity<List<Center>> getAllCenters() {
-        return ResponseEntity.ok(service.getAllCenters());
+    @ResponseStatus(HttpStatus.OK)
+    public List<Center> getAllCenters() {
+        return service.getAllCenters();
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateCenter(@PathVariable Long id, @RequestBody Center center) {
-        try {
-            service.updateCenter(id, center);
-            return ResponseEntity.ok(Map.of("message", "Logistics center updated successfully."));
-        }
-        catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message", e.getMessage()));
-        }
-        catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", e.getMessage()));
-        }
+    @ResponseStatus(HttpStatus.OK)
+    public MessageResponseDTO updateCenter(@PathVariable Long id, @RequestBody Center center) {
+        service.updateCenter(id, center);
+        return new MessageResponseDTO("Logistics center updated successfully.");
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCenter(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.OK)
+    public MessageResponseDTO deleteCenter(@PathVariable Long id) {
         service.deleteCenter(id);
-        return ResponseEntity.ok(Map.of("message", "Logistics center deleted successfully."));
+        return new MessageResponseDTO("Logistics center deleted successfully.");
     }
 }
