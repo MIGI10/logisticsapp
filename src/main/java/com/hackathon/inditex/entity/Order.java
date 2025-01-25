@@ -23,7 +23,7 @@ public class Order {
 
     @ManyToOne
     @JsonIgnore
-    private LogisticsCenter assignedCenter;
+    private Center assignedCenter;
 
     public Order() {
         this.status = "PENDING";

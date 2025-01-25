@@ -7,7 +7,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class LogisticsCenter {
+public class Center {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

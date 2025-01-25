@@ -1,7 +1,7 @@
 package com.hackathon.inditex.controller;
 
-import com.hackathon.inditex.entity.LogisticsCenter;
-import com.hackathon.inditex.service.LogisticsCenterService;
+import com.hackathon.inditex.entity.Center;
+import com.hackathon.inditex.service.CenterService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,17 +13,17 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/centers")
-public class LogisticsCenterController {
+public class CenterController {
 
-    private final LogisticsCenterService service;
+    private final CenterService service;
 
     @Autowired
-    public LogisticsCenterController(LogisticsCenterService service) {
+    public CenterController(CenterService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<?> createCenter(@RequestBody LogisticsCenter center) {
+    public ResponseEntity<?> createCenter(@RequestBody Center center) {
         try {
             service.createCenter(center);
             return ResponseEntity
@@ -35,12 +35,12 @@ public class LogisticsCenterController {
     }
 
     @GetMapping
-    public ResponseEntity<List<LogisticsCenter>> getAllCenters() {
+    public ResponseEntity<List<Center>> getAllCenters() {
         return ResponseEntity.ok(service.getAllCenters());
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateCenter(@PathVariable Long id, @RequestBody LogisticsCenter center) {
+    public ResponseEntity<?> updateCenter(@PathVariable Long id, @RequestBody Center center) {
         try {
             service.updateCenter(id, center);
             return ResponseEntity.ok(Map.of("message", "Logistics center updated successfully."));

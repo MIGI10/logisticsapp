@@ -1,7 +1,7 @@
 package com.hackathon.inditex.service;
 
-import com.hackathon.inditex.entity.LogisticsCenter;
-import com.hackathon.inditex.repository.LogisticsCenterRepository;
+import com.hackathon.inditex.entity.Center;
+import com.hackathon.inditex.repository.CenterRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class LogisticsCenterService {
+public class CenterServiceImpl implements CenterService {
 
-    private final LogisticsCenterRepository repository;
+    private final CenterRepository repository;
 
     @Autowired
-    public LogisticsCenterService(LogisticsCenterRepository repository) {
+    public CenterServiceImpl(CenterRepository repository) {
         this.repository = repository;
     }
 
-    public void createCenter(LogisticsCenter center) {
+    @Override
+    public void createCenter(Center center) {
 
         repository.findByCoordinates_LatitudeAndCoordinates_Longitude(
                 center.getCoordinates().getLatitude(),
@@ -37,13 +38,15 @@ public class LogisticsCenterService {
         repository.save(center);
     }
 
-    public List<LogisticsCenter> getAllCenters() {
+    @Override
+    public List<Center> getAllCenters() {
         return repository.findAll();
     }
 
-    public void updateCenter(Long id, LogisticsCenter updatedCenter) {
+    @Override
+    public void updateCenter(Long id, Center updatedCenter) {
 
-        LogisticsCenter existingCenter = repository.findById(id)
+        Center existingCenter = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Center not found."));
 
         BeanUtils.copyProperties(updatedCenter, existingCenter, getNullPropertyNames(updatedCenter));
@@ -55,6 +58,7 @@ public class LogisticsCenterService {
         repository.save(existingCenter);
     }
 
+    @Override
     public void deleteCenter(Long id) {
         repository.deleteById(id);
     }
