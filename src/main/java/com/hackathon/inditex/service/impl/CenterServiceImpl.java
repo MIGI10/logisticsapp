@@ -9,6 +9,7 @@ import com.hackathon.inditex.exception.CenterNotFoundException;
 import com.hackathon.inditex.mapper.CenterMapper;
 import com.hackathon.inditex.repository.CenterRepository;
 import com.hackathon.inditex.service.CenterService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +22,11 @@ import java.util.List;
  * Service class for the Center entity.
  */
 @Service
+@RequiredArgsConstructor
 public class CenterServiceImpl implements CenterService {
 
     private final CenterRepository repository;
     private final CenterMapper centerMapper;
-
-    @Autowired
-    public CenterServiceImpl(CenterRepository repository, CenterMapper centerMapper) {
-        this.repository = repository;
-        this.centerMapper = centerMapper;
-    }
 
     /**
      * Creates a new center.

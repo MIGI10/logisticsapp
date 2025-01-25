@@ -5,6 +5,7 @@ import com.hackathon.inditex.dto.OrderDTO;
 import com.hackathon.inditex.dto.ProcessedOrderDTO;
 import com.hackathon.inditex.service.OrderAssignmentService;
 import com.hackathon.inditex.service.OrderService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,16 +18,11 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/orders")
+@RequiredArgsConstructor
 public class OrderController {
 
     private final OrderService orderService;
     private final OrderAssignmentService orderAssignmentService;
-
-    @Autowired
-    public OrderController(OrderService orderService, OrderAssignmentService orderAssignmentService) {
-        this.orderService = orderService;
-        this.orderAssignmentService = orderAssignmentService;
-    }
 
     /**
      * Creates a new order.

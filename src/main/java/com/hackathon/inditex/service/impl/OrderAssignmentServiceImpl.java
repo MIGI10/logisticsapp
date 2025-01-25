@@ -10,6 +10,7 @@ import com.hackathon.inditex.repository.OrderRepository;
 import com.hackathon.inditex.service.OrderAssignmentService;
 import com.hackathon.inditex.util.GeoUtil;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +20,12 @@ import java.util.*;
  * Service class for order assignment.
  */
 @Service
+@RequiredArgsConstructor
 public class OrderAssignmentServiceImpl implements OrderAssignmentService {
 
     private final OrderRepository orderRepository;
     private final CenterRepository centerRepository;
     private final OrderMapper orderMapper;
-
-    @Autowired
-    public OrderAssignmentServiceImpl(OrderRepository orderRepository, CenterRepository centerRepository, OrderMapper orderMapper) {
-        this.orderRepository = orderRepository;
-        this.centerRepository = centerRepository;
-        this.orderMapper = orderMapper;
-    }
 
     /**
      * Assigns pending orders to available logistics centers.
