@@ -23,6 +23,8 @@ public class CenterMapperImpl implements CenterMapper {
         Center center = new Center();
         center.setId(dto.getId());
         center.setName(dto.getName());
+        center.setCapacity(dto.getCapacity());
+        center.setStatus(dto.getStatus());
         center.setMaxCapacity(dto.getMaxCapacity());
         center.setCurrentLoad(dto.getCurrentLoad());
 
@@ -46,6 +48,8 @@ public class CenterMapperImpl implements CenterMapper {
         CenterDTO dto = new CenterDTO();
         dto.setId(center.getId());
         dto.setName(center.getName());
+        dto.setCapacity(center.getCapacity());
+        dto.setStatus(center.getStatus());
         dto.setMaxCapacity(center.getMaxCapacity());
         dto.setCurrentLoad(center.getCurrentLoad());
 
