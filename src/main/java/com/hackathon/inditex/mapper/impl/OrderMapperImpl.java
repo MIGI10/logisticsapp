@@ -1,5 +1,6 @@
 package com.hackathon.inditex.mapper.impl;
 
+import com.hackathon.inditex.constant.Messages;
 import com.hackathon.inditex.dto.CoordinatesDTO;
 import com.hackathon.inditex.dto.CreateOrderResponseDTO;
 import com.hackathon.inditex.dto.OrderDTO;
@@ -56,7 +57,7 @@ public class OrderMapperImpl implements OrderMapper {
                 order.getAssignedCenterName(),
                 coordinatesDTO,
                 order.getStatus(),
-                "Order created successfully in PENDING status."
+                Messages.ORDER_CREATED
         );
     }
 
